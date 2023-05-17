@@ -13,7 +13,6 @@ public class WeaponController : MonoBehaviour
         {
             GameObject bulletObject = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             CrossBow bullet = bulletObject.GetComponent<CrossBow>();
-            bullet.Fire();
         }
     }
 }

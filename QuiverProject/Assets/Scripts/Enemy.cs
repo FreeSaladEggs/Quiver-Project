@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform playerTransform;
+    public Transform player;
     public float moveSpeed = 3f;
     public float attackDistance = 2f;
     public float attackCooldown = 2f;
@@ -16,34 +16,32 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (playerTransform != null)
+        if (player != null)
         {
-            Vector3 playerPosition = playerTransform.position;
-            playerPosition.y = transform.position.y; // Set the same y-position as the enemy
+            Vector3 playerPosition = player.position;
+            playerPosition.y = transform.position.y; 
 
-            // Calculate the direction from the enemy to the player on the XZ plane
+            
             Vector3 direction = playerPosition - transform.position;
             float distanceToPlayer = direction.magnitude;
 
-            // Normalize the direction vector to get a unit vector on the XZ plane
+           
             direction.Normalize();
 
-            // Check if within attack range
+            
             if (distanceToPlayer <= attackDistance)
             {
                 if (!isAttacking)
                 {
-                    // Start attacking the player
                     AttackPlayer();
                 }
             }
             else
             {
-                // Move the enemy towards the player on the XZ plane
+                
                 transform.position += new Vector3(direction.x, 0f, direction.z) * moveSpeed * Time.deltaTime;
             }
 
-            // Update attack cooldown timer
             if (isAttacking)
             {
                 attackTimer += Time.deltaTime;
@@ -59,5 +57,6 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("enemy yadhrab");
         animator.SetTrigger("isAttacking");
+        //-HP Player
     }
 }
