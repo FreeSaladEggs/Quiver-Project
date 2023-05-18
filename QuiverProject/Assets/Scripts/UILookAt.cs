@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UILookAt : MonoBehaviour
 {
-    Camera cam;
+   private Camera cam;
 
     private void Start()
     {
@@ -13,6 +13,6 @@ public class UILookAt : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(transform.position+ cam.transform.rotation * Vector3.forward,cam.transform.rotation*Vector3.up);
+        transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
     }
 }
