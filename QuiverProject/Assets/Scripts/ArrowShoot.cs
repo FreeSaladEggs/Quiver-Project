@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class ArrowShoot : MonoBehaviour
 {   
     private Rigidbody rb;
-    [SerializeField] private float speedArrow;
+    [SerializeField] private float speedArrow,arrowDammage =20f;
+    public CharacterStats charStat;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb= GetComponent<Rigidbody>();
+        charStat = GameObject.FindGameObjectWithTag("Enemy").GetComponent<CharacterStats>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -20,5 +24,15 @@ public class ArrowShoot : MonoBehaviour
 
         // Apply velocity to the rigidbody in the shoot direction
         rb.velocity = shootDirection * speedArrow;
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            charStat.maxHealth -= arrowDammage;
+            Debug.Log("Enemy Dammaged");
+        }
     }
 }

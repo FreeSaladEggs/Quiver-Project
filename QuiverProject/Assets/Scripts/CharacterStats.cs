@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
-    [SerializeField] float maxHealth = 100;
+    [SerializeField]public float maxHealth = 100;
     public  float power = 10;
     [SerializeField]  int killScore = 200;
 
