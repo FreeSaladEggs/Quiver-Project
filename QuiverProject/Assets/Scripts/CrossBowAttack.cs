@@ -13,6 +13,9 @@ public class CrossBowAttack : MonoBehaviour
     public GameObject arrowWorld; // arrow real world
     public GameObject arrowInst; // arrow prefab
 
+    public GameObject attachObject; // game object that attach arrow to crossbow
+
+    [SerializeField] private float waitTime = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,19 +25,23 @@ public class CrossBowAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if (CheckArrow.ready_shoot && GetTriggerInput())
-         {
-             Shoot();
-             Debug.Log("Test");
-         }
+        if (CheckArrow.ready_shoot && GetTriggerInput())
+        {
+            Shoot();
+            Debug.Log("Test");
+        }
 
-         if(shooted_already)
-         {
-             shooted_already = false;
-             CheckArrow.ready_shoot = false;
-             Instantiate(arrowInst,Placement.transform.position,this.transform.rotation);
-             //Destroy(GameObject.Find("Arroworld"));
-         }
+        if (shooted_already)
+        {
+            shooted_already = false;
+            CheckArrow.ready_shoot = false;
+            Instantiate(arrowInst, Placement.transform.position, this.transform.rotation);
+            attachObject.SetActive(false);
+            StartCoroutine(Mark());
+            arrowWorld.transform.position = new Vector3(67.209f, 23.0316f, 25.031f);
+            //attachObject.SetActive(true);
+            //Destroy(GameObject.Find("Arroworld"));
+        }
     }
 
     public bool GetTriggerInput()
@@ -47,5 +54,11 @@ public class CrossBowAttack : MonoBehaviour
     {
         rb.isKinematic = false;
         shooted_already = true;
+    }
+
+    IEnumerator Mark()
+    {
+        yield return new WaitForSeconds(waitTime);
+        attachObject.SetActive(true);
     }
 }
