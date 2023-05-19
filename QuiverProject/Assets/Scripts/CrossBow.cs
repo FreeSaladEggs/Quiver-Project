@@ -10,7 +10,7 @@ public class CrossBow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Arrow") && ready_shoot == false)
+        if (other.CompareTag("Arrow"))
         {
             Debug.Log("arrow on crossbow");
             ready_shoot = true;

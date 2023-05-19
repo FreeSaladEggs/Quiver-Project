@@ -10,12 +10,13 @@ public class CharacterStats : MonoBehaviour
     public  float power = 10;
     [SerializeField]  int killScore = 200;
 
-    public float currentHealth{get; private set ;}
+    public float currentHealth{get; set ;}
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
     }
+
     public void ChangeHealth(float value)
     {
         currentHealth += value;
@@ -23,24 +24,29 @@ public class CharacterStats : MonoBehaviour
 
         //if (transform.CompareTag("Enemy"))
             transform.Find("Canvas").GetChild(1).GetComponent<Image>().fillAmount = currentHealth / maxHealth;
-
-        if (currentHealth <= 0) {
-            Die();
-        }
+        /* if (currentHealth <= 0) {
+             Die();
+         }
+        if (maxHealth <= 0)
+        {
+           Die();
+        }*/
     }
 
-    void Die()
+
+    public void Die()
     {
         if (transform.CompareTag("Player"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        else if (transform.CompareTag("Enemy"))
+        Destroy(this.gameObject);
+        /*else if (transform.CompareTag("Enemy"))
         {
             LevelManager.instance.score += killScore;
             Destroy(gameObject);
             //Destroy Enemy
-        }
+        }*/
     }
 
 

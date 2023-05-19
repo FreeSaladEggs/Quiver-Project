@@ -15,7 +15,7 @@ public class CrossBowAttack : MonoBehaviour
 
     public GameObject attachObject; // game object that attach arrow to crossbow
 
-    [SerializeField] private float waitTime = 1f;
+    [SerializeField] private float waitTime = 1f; // Automatique reload time 
     // Start is called before the first frame update
     void Start()
     {

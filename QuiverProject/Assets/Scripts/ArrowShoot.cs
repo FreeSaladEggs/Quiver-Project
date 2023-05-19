@@ -24,6 +24,12 @@ public class ArrowShoot : MonoBehaviour
 
         // Apply velocity to the rigidbody in the shoot direction
         rb.velocity = shootDirection * speedArrow;
+
+        if (charStat.maxHealth <= 0)
+        {
+            Debug.Log("enemy met");
+            charStat.Die();
+        }
     }
 
 
