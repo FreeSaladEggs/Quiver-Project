@@ -15,6 +15,10 @@ public class ArrowShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity= Vector3.forward * speedArrow;
+        // Get the shoot direction based on the crossbow's rotation
+        Vector3 shootDirection = transform.rotation * Vector3.forward;
+
+        // Apply velocity to the rigidbody in the shoot direction
+        rb.velocity = shootDirection * speedArrow;
     }
 }

@@ -32,8 +32,8 @@ public class CrossBowAttack : MonoBehaviour
          {
              shooted_already = false;
              CheckArrow.ready_shoot = false;
-             Instantiate(arrowInst,Placement.transform.position,Quaternion.identity);
-             Destroy(arrowWorld);
+             Instantiate(arrowInst,Placement.transform.position,this.transform.rotation);
+             //Destroy(GameObject.Find("Arroworld"));
          }
     }
 
